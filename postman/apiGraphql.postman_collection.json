@@ -1,0 +1,292 @@
+{
+	"info": {
+		"_postman_id": "7beed933-0a6c-4523-812e-65cfe0ac2783",
+		"name": "apiGraphql",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Query",
+					"item": [
+						{
+							"name": "currentUser",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\n    currentUser{\n        id\n        username\n        email\n        password\n        createdAt\n        updatedAt\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}",
+									"host": [
+										"{{base_url}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Mutation",
+					"item": [
+						{
+							"name": "updateCurrentUser",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation updateExistingUser($input: UserUpdateInput!) {\n    updateCurrentUser(input: $input) {\n        username\n        email\n    }\n}",
+										"variables": "{\n\t\"input\": {\n\t\t\"username\": \"123440\",\n\t\t\"email\": \"updateduser@email.com\"\n\t}\n}"
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}",
+									"host": [
+										"{{base_url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteCurrentUser",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{token}}"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    deleteCurrentUser\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}",
+									"host": [
+										"{{base_url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateCurrentPassword",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{token}}"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation updateExistingUser($input: UserUpdatePasswordInput!) {\n    updateCurrentUserPassword(input: $input)\n}",
+										"variables": "{\n\t\"id\": 1,\n\t\"input\": {\n\t\t\"password\": \"newPass123\"\n\t}\n}"
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}",
+									"host": [
+										"{{base_url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "createUser",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation createNewUser($input: UserCreateInput!) {\n    createUser(input: $input) {\n        id\n        username\n        email\n    }\n}",
+										"variables": "{\n\t\"input\": {\n\t\t\"username\": \"userTest\",\n\t\t\"email\": \"createduser@email.com\",\n\t\t\"password\": \"123456\"\n\t}\n}"
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}",
+									"host": [
+										"{{base_url}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "Token",
+			"item": [
+				{
+					"name": "createToken",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation createNewToken($login: String!, $password: String!) {\n    createToken(login: $login, password: $password) {\n        token\n    }\n}",
+								"variables": "{\n\t\"login\": \"userTest\",\n\t\"password\": \"123456\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}",
+							"host": [
+								"{{base_url}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "Query",
+					"item": [
+						{
+							"name": "currentProfile",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\n    currentProfile{\n        id\n        name\n        createdAt\n        updatedAt\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}",
+									"host": [
+										"{{base_url}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Mutation",
+					"item": [
+						{
+							"name": "updateCurrentProfile",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{token}}"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation updateExistingProfile($input: ProfileUpdateInput!) {\n    updateCurrentProfile(input: $input) {\n        name\n        fk_user{\n            id\n            username\n            email\n        }\n    }\n}",
+										"variables": "{\n\t\"input\": {\n\t\t\"name\": \"new name\"\n\t}\n}"
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}",
+									"host": [
+										"{{base_url}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU4MjIyODkwMH0.AA36Lk8UygrvUfXoVrXGjscVkKbr0gRJBw1GTCWqkEc",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "4f8ca629-6ab2-495b-9151-d39524885ac8",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9bdfd28d-6a2c-47dd-bdda-85e44548dc91",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "e6d4d747-f853-4990-ab03-f764f8efabe4",
+			"key": "base_url",
+			"value": "http://localhost:3000/graphql",
+			"type": "string"
+		}
+	]
+}
